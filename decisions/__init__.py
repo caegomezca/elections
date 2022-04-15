@@ -13,7 +13,11 @@ class C(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    pass
+    def creating_session(subsession):
+        import random
+        for player in subsession.get_players():
+            player.time_pressure = random.choice([True, False])
+            print('set time_pressure to', player.time_pressure)
 
 
 class Group(BaseGroup):
@@ -21,6 +25,8 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    time_pressure = models.BooleanField()
+
     situation1_personal = models.IntegerField(
         choices=[(1, "Robar el 80% de las ganancias  del individuo B."),
                  (2, "No robar el 80% de las ganancias del individuo B.")],
