@@ -13,13 +13,13 @@ class C(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    def creating_session(subsession):
-        import random
-        for player in subsession.get_players():
-            player.time_pressure = random.choice([True, False])
-            print('set time_pressure to', player.time_pressure)
-
-
+    pass
+def creating_session(subsession: Subsession):
+    import random
+    for player in subsession.get_players():
+        player.time_pressure = random.choice([True, False])
+        print('set time_pressure to', player.time_pressure)
+    
 class Group(BaseGroup):
     pass
 
