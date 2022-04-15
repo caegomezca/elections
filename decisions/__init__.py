@@ -25,29 +25,7 @@ class Player(BasePlayer):
         choices=[(1, "Robar el 80% de las ganancias  del individuo B."),
                  (2, "No robar el 80% de las ganancias del individuo B.")],
         widget=widgets.RadioSelect)
-
-    # Esto es para randomizar las choices
-    def situation1_personal_choices(self):
-        choices = [(1, "Robar el 80% de las ganancias  del individuo B."),
-                   (2, "No robar el 80% de las ganancias del individuo B.")]
-        random.shuffle(choices)
-        return choices
-
-
-
-
-
-
-    fruit = models.StringField(
-        choices = [
-            [1, 'Apple'],
-            [2, 'Kiwi'],
-            [3, 'Mango'],
-        ],
-        widget=widgets.RadioSelect(),
-        label=""
-    )
-
+    
     def candidates_random(player):
         choices = [
             [1, 'Gustavo Petro'],
@@ -69,6 +47,13 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect(),
         label=""
     )
+# el randomizador de opciones tiene que estar afuera del objeto Player!
+def situation1_personal_choices(Player):
+    choices = [(1, "Robar el 80% de las ganancias  del individuo B."),
+             (2, "No robar el 80% de las ganancias del individuo B.")]
+    random.shuffle(choices)
+    return choices
+
 
 
 # PAGES
@@ -77,23 +62,6 @@ class a04_opinion(Page):
     form_fields = [#'candidates',
                    #'fruit'
                   'situation1_personal']
-
-
-
-    #@staticmethod
-    #def vars_for_template(player):
-    #    import random
-    #    choices = [
-    #        [1, 'Apple'],
-    #        [2, 'Kiwi'],
-    #        [3, 'Mango'],
-    #    ]
-    #    random.shuffle(choices)
-    #    return dict(fields=choices)
-
-
-
-
 
 
 class ResultsWaitPage(WaitPage):

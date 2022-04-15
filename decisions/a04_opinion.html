@@ -12,18 +12,17 @@
     </p>
 
 <p>
+
 <div class="m-4 row justify-content-center">
 <table class=table style='width: auto'>
     {% for field in form %}
             {% for choice in field %}
-    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp; {{ choice }}</td></tr>
+        <!-- toca mostrar dos cosas la choice y su label para que el loop funcione!-->
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp; {{ choice }} &nbsp;{{ choice.label }}</td></tr>
             {% endfor %}
     {% endfor %}
 </table>
 </div>
-
-
-</p>
 
 <p>
 Según las encuestas, estas son las parejas de candidatos qué más tienen
