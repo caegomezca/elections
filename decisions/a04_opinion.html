@@ -1,0 +1,38 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+{{ block title }}
+    Pregunta
+{{ endblock }}
+{{ block content }}
+<p>
+    Entre los actuales candidatos a la presidencia,
+    ¿por quién es más probable que usted vaya a votar en la primera vuelta (el próximo 29 de mayo de 2022)?
+    </p>
+
+<p>
+<div class="m-4 row justify-content-center">
+<table class=table style='width: auto'>
+    {% for field in form %}
+            {% for choice in field %}
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp; {{ choice }}</td></tr>
+            {% endfor %}
+    {% endfor %}
+</table>
+</div>
+
+
+</p>
+
+<p>
+Según las encuestas, estas son las parejas de candidatos qué más tienen
+    probabilidad de llegar a segunda vuelta. Indique por favor, para cada
+    pareja, ¿por cuál candidato se siente más cercana/o y/o quién es más probable que usted
+    apoye si fuera a votar?
+</p>
+
+
+  {{ next_button }}
+
+{{ endblock }}
