@@ -1,0 +1,29 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+{{ block title }}
+    Pregunta
+{{ endblock }}
+{{ block content }}
+<p>
+   Según las encuestas, estas son las parejas de candidatos qué más tienen probabilidad
+    de llegar a segunda vuelta. Indique por favor, para cada pareja, ¿a quién se siente
+    más cercano/a y/o quién es más probable que apoye si fuera a votar?
+    </p>
+
+
+
+{{ formfield 'pe_fi' }}
+
+
+{{ formfield 'pe_fa' }}
+
+
+{{ formfield 'fa_fi' }}
+
+
+
+ {{ next_button }}
+
+{{ endblock }}

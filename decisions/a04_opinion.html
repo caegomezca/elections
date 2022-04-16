@@ -13,8 +13,7 @@
 
 <p>
 
-<div class="m-4 row justify-content-center">
-<table class=table style='width: auto'>
+<table class="table table-hover" style='width: auto'>
     {% for field in form %}
             {% for choice in field %}
         <!-- toca mostrar dos cosas la choice y su label para que el loop funcione!-->
@@ -22,16 +21,7 @@
             {% endfor %}
     {% endfor %}
 </table>
-</div>
 
-<p>
-Según las encuestas, estas son las parejas de candidatos qué más tienen
-    probabilidad de llegar a segunda vuelta. Indique por favor, para cada
-    pareja, ¿por cuál candidato se siente más cercana/o y/o quién es más probable que usted
-    apoye si fuera a votar?
-</p>
-
-
-  {{ next_button }}
+ {{ next_button }}
 
 {{ endblock }}

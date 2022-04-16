@@ -1,0 +1,94 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+{{ block title }}
+[Instrucciones]
+{{ endblock }}
+{{ block content }}
+
+<!-- It's a javascript file which will perform
+all actions which we need to show tweets-->
+
+
+
+{{ if player.treatment == 0 or player.treatment == 1 }}
+    <blockquote class="twitter-tweet"><p lang="es" dir="ltr">
+    El domingo 29 de mayo podrás ejercer tu derecho al voto para
+    elegir al presidente y vicepresidente de la república para el
+    período 2022-2026. <br><br>¡Participa, vota y elige! 🗳🙋🏾‍♀️🙋🏿‍♂️
+    <a href="https://twitter.com/hashtag/GarantesDeLaDemocracia?src=hash&amp;ref_src=twsrc%5Etfw">
+        #GarantesDeLaDemocracia</a> <a href="https://t.co/AsB2wUyQNz">pic.twitter.com/AsB2wUyQNz</a>
+</p>&mdash; Registraduría Nacional del Estado Civil (@Registraduria)
+    <a href="https://twitter.com/Registraduria/status/1514284904829358080?ref_src=twsrc%5Etfw">
+        April 13, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
+
+</script>
+
+<script async src=
+"https://platform.twitter.com/widgets.js" charset="utf-8">
+</script>
+
+{{ elif player.treatment == 2 or player.treatment == 3 }}
+{{ if player.pe_fi == 1 }}
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">Que me ataquen Petro, Cepeda, Farc, ELN, Roy, Benedetti, Ospina y varios del mismo combo, lo que indica es que vamos muy bien y vamos a ganar. <br>Ellos ya lo saben. <br>En Colombia sí cambiaran muchas cosas, pero a favor de la gente, y no de ellos, ni de los criminal que hoy defienden</p>&mdash; Fico Gutiérrez (@FicoGutierrez) <a href="https://twitter.com/FicoGutierrez/status/1514636341329465350?ref_src=twsrc%5Etfw">April 14, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script async src=
+"https://platform.twitter.com/widgets.js" charset="utf-8">
+</script>
+{{ else }}
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">No me avergüenza estar endeudado. El 95% de los colombianos lo está.<br>Me avergonzaría asesinar 6.402 inocentes, robar 70 mil millones, dar carne de caballo a los niños, recibir plata de narcos en campaña, robar tierras, declarar renta en $0, golpear o violar mujeres; venderme!</p>&mdash; Gustavo Bolívar (@GustavoBolivar) <a href="https://twitter.com/GustavoBolivar/status/1430912628810002433?ref_src=twsrc%5Etfw">August 26, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script async src=
+"https://platform.twitter.com/widgets.js" charset="utf-8">
+</script>
+
+{{ endif }}
+
+{{ elif player.treatment == 4 or player.treatment == 5  }}
+{{ if player.pe_fi == 1 }}
+    <blockquote class="twitter-tweet"><p lang="es" dir="ltr">No me avergüenza estar endeudado. El 95% de los colombianos lo está.<br>Me avergonzaría asesinar 6.402 inocentes, robar 70 mil millones, dar carne de caballo a los niños, recibir plata de narcos en campaña, robar tierras, declarar renta en $0, golpear o violar mujeres; venderme!</p>&mdash; Gustavo Bolívar (@GustavoBolivar) <a href="https://twitter.com/GustavoBolivar/status/1430912628810002433?ref_src=twsrc%5Etfw">August 26, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script async src=
+"https://platform.twitter.com/widgets.js" charset="utf-8">
+</script>
+{{ else}}
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">Que me ataquen Petro, Cepeda, Farc, ELN, Roy, Benedetti, Ospina y varios del mismo combo, lo que indica es que vamos muy bien y vamos a ganar. <br>Ellos ya lo saben. <br>En Colombia sí cambiaran muchas cosas, pero a favor de la gente, y no de ellos, ni de los criminal que hoy defienden</p>&mdash; Fico Gutiérrez (@FicoGutierrez) <a href="https://twitter.com/FicoGutierrez/status/1514636341329465350?ref_src=twsrc%5Etfw">April 14, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script async src=
+"https://platform.twitter.com/widgets.js" charset="utf-8">
+</script>
+ {{ endif }}
+
+{{ elif player.treatment == 6 or player.treatment == 7 }}
+<style>
+#contenedor {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#contenedor > div {
+  width: 50%;
+}
+</style>
+  <div id="contenedor">
+  <div>
+    <p>
+          <blockquote class="twitter-tweet"><p lang="es" dir="ltr">Que me ataquen Petro, Cepeda, Farc, ELN, Roy, Benedetti, Ospina y varios del mismo combo, lo que indica es que vamos muy bien y vamos a ganar. <br>Ellos ya lo saben. <br>En Colombia sí cambiaran muchas cosas, pero a favor de la gente, y no de ellos, ni de los criminal que hoy defienden</p>&mdash; Fico Gutiérrez (@FicoGutierrez) <a href="https://twitter.com/FicoGutierrez/status/1514636341329465350?ref_src=twsrc%5Etfw">April 14, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script async src=
+"https://platform.twitter.com/widgets.js" charset="utf-8">
+</script>
+    </p>
+  </div>
+  <div>
+    <p> <blockquote class="twitter-tweet"><p lang="es" dir="ltr">No me avergüenza estar endeudado. El 95% de los colombianos lo está.<br>Me avergonzaría asesinar 6.402 inocentes, robar 70 mil millones, dar carne de caballo a los niños, recibir plata de narcos en campaña, robar tierras, declarar renta en $0, golpear o violar mujeres; venderme!</p>&mdash; Gustavo Bolívar (@GustavoBolivar) <a href="https://twitter.com/GustavoBolivar/status/1430912628810002433?ref_src=twsrc%5Etfw">August 26, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script async src=
+"https://platform.twitter.com/widgets.js" charset="utf-8">
+</script></p>
+  </div>
+</div>
+{{ else }}
+    negative
+{{ endif }}
+
+ {{ next_button }}
+
+{{ endblock }}

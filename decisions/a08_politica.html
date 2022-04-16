@@ -1,0 +1,47 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{{ block title }}
+    [Instrucciones]
+{{ endblock }}
+{{ block content }}
+
+{{ if player.order_politics == 1 or player.order_politics == 2  }}
+<p>
+Propuesta (DISONANTE 1):
+    El derecho al aborto no debe existir jurídica ni socialmente pues
+    puede ser un mecanismo para estimularlo.  La política pública no
+    debe favorecer el aborto sino propiciar una sociedad de aborto cero.
+</p>
+<p>
+{{ if player.treatment == 2 or player.treatment == 4 or player.treatment == 6 or player.treatment == 0  }}
+
+{{ elif player.treatment == 1 or player.treatment == 3 or player.treatment == 5 or player.treatment == 7 }}
+
+<p><b>Esta propuesta es parte del programa o fue públicamente defendida por el candidato Gustavo Petro.</b></p>
+
+{{ endif }}
+</p>
+
+{{ else }}
+Propuesta (DISONANTE 2):
+   No a la discriminación de la población LGTBI+.
+
+<p>
+{{ if player.treatment == 2 or player.treatment == 4 or player.treatment == 6 or player.treatment == 0  }}
+
+{{ elif player.treatment == 1 or player.treatment == 3 or player.treatment == 5 or player.treatment == 7 }}
+
+<p><b>Esta propuesta es parte del programa o fue públicamente defendida por el candidato Fico Gutiérrez.</b></p>
+
+{{ endif }}
+</p>
+
+
+{{ endif }}
+
+
+ {{ next_button }}
+
+{{ endblock }}
+
