@@ -107,7 +107,27 @@ class Player(BasePlayer):
         choices=[1, 2, 3, 4, 5, 6, 7]
     )
 
+    q3a = models.IntegerField(
+        widget=widgets.RadioSelect,
+        choices=[1, 2, 3, 4, 5, 6, 7]
+    )
 
+    q3b = models.IntegerField(
+        widget=widgets.RadioSelect,
+        choices=[1, 2, 3, 4, 5, 6, 7]
+    )
+
+    q4a = models.IntegerField(
+        widget=widgets.RadioSelect,
+        choices=[1, 2, 3, 4, 5, 6, 7]
+    )
+
+    q4b = models.IntegerField(
+        widget=widgets.RadioSelect,
+        choices=[1, 2, 3, 4, 5, 6, 7]
+    )
+
+    dictator = models.IntegerField(min=0, max=10)
 
 ##########
 
@@ -143,7 +163,7 @@ class a06_info(Page):
 
 class a07_politica(Page):
     form_model = 'player'
-
+#    form_fields = ['q1a', 'q1b']
     @staticmethod
     def get_form_fields(player):
         if player.order_politics == 0 or player.order_politics == 3:
@@ -153,7 +173,45 @@ class a07_politica(Page):
 
 
 class a08_politica(Page):
+    form_model = 'player'
+
+    @staticmethod
+    def get_form_fields(player):
+        if player.order_politics == 0 or player.order_politics == 3:
+            return ['q2a', 'q2b']
+        else:
+            return ['q1a', 'q1b']
+
+
+class a09_politica(Page):
+    form_model = 'player'
+
+    @staticmethod
+    def get_form_fields(player):
+        if player.order_politics == 0 or player.order_politics == 1:
+            return ['q3a', 'q3b']
+        else:
+            return ['q4a', 'q4b']
+
+
+class a10_politica(Page):
+    form_model = 'player'
+
+    @staticmethod
+    def get_form_fields(player):
+        if player.order_politics == 0 or player.order_politics == 1:
+            return ['q4a', 'q4b']
+        else:
+            return ['q3a', 'q3b']
+
+
+class a11_send(Page):
     pass
+
+class a12_send(Page):
+    form_model = 'player'
+    form_fields = ['dictator']
+
 
 class ResultsWaitPage(WaitPage):
     pass
@@ -162,8 +220,12 @@ class Results(Page):
     pass
 
 
-page_sequence = [a05_opinion,
+page_sequence = [#a05_opinion,
                  #a06_info,
-                 a07_politica,
-                 #a08_politica
+                 #a07_politica,
+                 #a08_politica,
+                 #a09_politica,
+                 #a10_politica,
+                 a11_send,
+                a12_send,
                     ]
