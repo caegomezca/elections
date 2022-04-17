@@ -3,16 +3,38 @@
 {{ endblock }}
 {{ block content }}
 
-{{ if seed > 0.5 }}
-{{ formfield 'secure' }}
-{{ formfield 'will_consider' }}
-{{ formfield 'should_consider' }}
-{{ else }}
-{{ formfield 'secure' }}
-{{ formfield 'should_consider' }}
-{{ formfield 'will_consider' }}
-{{ endif }}
+<p>
+En política se habla normalmente de "Izquierda" y "Derecha". En una escala dónde “0" es la “Izquierda” y “10" la “Derecha”, ¿dónde se ubicaría Usted?
+    <div class="table-responsive text-center align-middle">
+        <table class="table table-bordered" style="max-width:970px; font-size: 12px">
+            <tr>
+                <td >Izquierda</td>
+                                <td><div class="radio "><label><input type="radio" name="spectrum" value="0"> 0</label></div></td>
+                <td><div class="radio "><label><input type="radio" name="spectrum" value="1"> 1</label></div></td>
+                <td><div class="radio "><label><input type="radio" name="spectrum" value="2"> 2</label></div></td>
+                <td><div class="radio "><label><input type="radio" name="spectrum" value="3"> 3</label></div></td>
+                <td><div class="radio "><label><input type="radio" name="spectrum" value="4"> 4</label></div></td>
+                <td><div class="radio "><label><input type="radio" name="spectrum" value="5"> 5</label></div></td>
+                  <td><div class="radio "><label><input type="radio" name="spectrum" value="6"> 6</label></div></td>
+                <td><div class="radio "><label><input type="radio" name="spectrum" value="7"> 7</label></div></td>
+                <td><div class="radio "><label><input type="radio" name="spectrum" value="8"> 8</label></div></td>
+                  <td><div class="radio "><label><input type="radio" name="spectrum" value="9"> 9</label></div></td>
+                <td><div class="radio "><label><input type="radio" name="spectrum" value="10"> 10</label></div></td>
+                <td >Derecha</td>
+            </tr>
+            <tr>
+        </table>
+    </div>
+</p>
 
+
+{{ formfield 'age' }}
+{{ formfield 'sex' }}
+{{ formfield 'ses' }}
+{{ formfield 'labor_status' }}
+{{ formfield 'schoolar' }}
+{{ formfield 'marital' }}
+{{ formfield 'home_size' }}
 
     {{ next_button }}
 

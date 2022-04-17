@@ -176,7 +176,7 @@ class Player(BasePlayer):
         label='¿Cuál es su sexo?'
     )
     ses = models.IntegerField(
-        widget=widgets.RadioSelect,
+        widget=widgets.RadioSelectHorizontal,
         choices=[1, 2, 3, 4, 5, 6],
         label="¿De acuerdo a la factura de sus servicios, ¿en qué estrato se encuentra su vivienda?"
     )
@@ -187,8 +187,8 @@ class Player(BasePlayer):
             [1, "Activo"],
             [2, "En búsqueda de empleo"],
             [3, "Jubilado"],
-            [4, "Otro (no trabaja/no busca trabajo/no estudia, responsable del hogar, discapacitado no trabajador)"],
-            [5, "Estudiante"]
+            [4, "Estudiante"],
+            [5, "Otro (no trabaja/no busca trabajo/no estudia, responsable del hogar, discapacitado no trabajador)"]
         ],
         label="¿Cuál de las siguientes situaciones describe mejor su situación laboral actual?"
     )
@@ -197,13 +197,13 @@ class Player(BasePlayer):
     schoolar = models.IntegerField(
         widget=widgets.RadioSelect,
         choices=[
-            [1, "Primaria o menos"],
+            [1, "Primaria o menor"],
             [2, "Secundaria"],
             [3, "Algunos años de universidad o formación profesional de grado superior"],
             [4, "Universidad o formación profesional de grado superior"],
-            [5, "Posgrado (Master, Doctorado, otra)"]
+            [5, "Posgrado (Especialización, Máster, Doctorado, etc)"]
         ],
-        label="¿Cuál es su máximo nivel de estudios finalizados?"
+        label="¿Cuál es su máximo nivel de estudios finalizado?"
     )
 
     marital = models.IntegerField(
@@ -217,28 +217,27 @@ class Player(BasePlayer):
     )
 
     home_size = models.IntegerField(
-        label="¿Cuántas personas viven normalmente en su hogar (incluyéndose usted? "
+        label="¿Cuántas personas viven normalmente en su hogar (incluyéndose usted)? "
     )
 
-    fluid_1 = models.IntegerField(
-        label="Un bate y una pelota cuestan $1.10 en total. El bate cuesta $1.00 más que la pelota. ¿Cuánto cuesta la pelota? "
-    )
+    fluid_1 = models.IntegerField(label="Un bate y una pelota cuestan $1.10 en total. "
+                                      "El bate cuesta $1.00 más que la pelota. ¿Cuántos "
+                                      "centavos cuesta la pelota?")
 
     fluid_2 = models.IntegerField(
-        label="Si 5 máquinas se demoran 5 minutos para hacer 5 artículos, ¿cuánto tiempo les tomaría a 100 máquinas hacer 100 artículos?"
+        label="Si 5 máquinas se demoran 5 minutos para hacer 5 artículos, "
+              "¿cuántos minutos les tomaría a 100 máquinas hacer 100 artículos?"
+    )
+
+    fluid_3 = models.IntegerField(
+        label="En un lago hay un segmento de almohadillas de lirios y "
+              "cada día ese segmento dobla su tamaño. Si el segmento tarda"
+              " 48 días en cubrir el lago, ¿cuántos días tardará el segmento en "
+              "cubrir la mitad del lago?"
     )
 
     risk = models.IntegerField(
-        choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        label="¿Cómo se ve a usted mismo? ¿Es usted una "
-              "persona que generalmente está dispuesta a correr "
-              "riesgos o usted trata de evitar correr riesgos? "
-              "Por favor utilice una escala de 0 a 10, donde 0 "
-              "significa que usted “no está para nada dispuesto "
-              "a correr riesgos” y 10 significa que usted “está "
-              "completamente dispuesto a correr riesgos”. También"
-              " puede utilizar los valores intermedios para indicar"
-              " donde se encuentra en la escala."
+        choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     )
 
     intemporal = models.IntegerField(
@@ -334,12 +333,45 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect
     )
 
+    frequency_religion = models.IntegerField(
+        label='¿Normalmente con qué frecuencia asiste a una función religiosa?',
+        choices=[1, 2, 3, 4, 5, 6],
+        widget=widgets.RadioSelect
+    )
 
+    poverty = models.IntegerField(
+        label='Entre los siguientes dos, ¿cuál factor cree que sea más'
+              ' importante para que una persona se encuentre en estado de pobreza?',
+        choices=[
+                 [1, "Falta de esfuerzo y compromiso laboral por parte de la persona"],
+                 [2, "Suerte o eventos que no están en control de la persona"]
+        ],
+        widget=widgets.RadioSelect
+    )
 
+    impuesto = models.IntegerField(
+        label="¿Qué tan de acuerdo está con que el Gobierno tenga que reducir "
+              "las diferencias entre ricos y pobres, de pronto subiendo los impuestos "
+              "para los ricos o proveyendo asistencia a los ingresos de los más pobres?"
+              " Por favor, indique que tan de acuerdo está marcando un número"
+              " de uno a cinco en la escala de abajo, donde uno indica “estoy totalmente "
+              "en desacuerdo” y cinco indica “estoy totalmente de acuerdo”.",
+        choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    )
+
+    distribution = models.IntegerField(
+        label="¿Piensa que la distribución del ingreso en Colombia es equitativa?"
+              " ¿o piensa que el dinero y la riqueza de este país tienen que repartirse"
+              " entre un número mayor o menor de personas?",
+        choices=[
+            [1, "La distribución es equitativa"],
+            [2, "Dinero y riqueza tendrían que repartirse de manera más igualitaria"],
+            [3, "Dinero y riqueza tendrían que repartirse de manera menos igualitaria"]
+        ],
+        widget=widgets.RadioSelect
+    )
 
 ##########
-
-
 
 def candidates_choices(Player):
     choices = [
@@ -438,14 +470,17 @@ class a13_questionnaire(Page):
 
 class a14_questionnaire(Page):
     form_model = 'player'
-    form_fields = ['secure', 'will_consider', 'should_consider']
+    form_fields = ['home_size',
+    'marital', 'schoolar', 'labor_status', 'ses', 'sex', 'age', 'spectrum']
 
-    @staticmethod
-    def vars_for_template(player):
-        seed = random.random()
-        return dict(
-                seed=seed,
-            )
+class a15_questionnaire(Page):
+    form_model = 'player'
+    form_fields = [
+            'distribution', 'impuesto', 'poverty', 'frequency_religion', 'religion',
+            'self_perception_justicia', 'botella', 'altruism', 'positive_expectation',
+            'intemporal', 'risk', 'fluid_3', 'fluid_2', 'fluid_1'
+        ]
+
 
 
 page_sequence = [#a05_opinion,
@@ -456,5 +491,5 @@ page_sequence = [#a05_opinion,
                  #a10_politica,
                  #a11_send,
                  #a12_send,
-                 a13_questionnaire
+                 a15_questionnaire,
                     ]
