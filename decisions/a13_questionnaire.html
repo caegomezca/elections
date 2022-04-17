@@ -1,0 +1,19 @@
+{{ block title }}
+    Cuestionario
+{{ endblock }}
+{{ block content }}
+
+{{ if seed > 0.5 }}
+{{ formfield 'secure' }}
+{{ formfield 'will_consider' }}
+{{ formfield 'should_consider' }}
+{{ else }}
+{{ formfield 'secure' }}
+{{ formfield 'should_consider' }}
+{{ formfield 'will_consider' }}
+{{ endif }}
+
+
+    {{ next_button }}
+
+{{ endblock }}

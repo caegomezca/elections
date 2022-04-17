@@ -34,16 +34,17 @@ def creating_session(subsession: Subsession):
     import itertools
     treatment = itertools.cycle(C.TREATMENTS)
     order = itertools.cycle(C.ORDER_POLITICS)
-    for player in subsession.get_players():
-        player.treatment = next(treatment)
-        player.order_politics = next(order)
-        print('Treatment', player.treatment)
-        print('Order', player.order_politics)
+    for p in subsession.get_players():
+        p.treatment = next(treatment)
+        p.order_politics = next(order)
+        print('Treatment', p.treatment)
+        print('Order', p.order_politics)
 
 class Group(BaseGroup):
     pass
 
 class Player(BasePlayer):
+    r_seed = models.FloatField()
     treatment = models.IntegerField()
     order_politics = models.IntegerField()
 
@@ -129,6 +130,35 @@ class Player(BasePlayer):
 
     dictator = models.IntegerField(min=0, max=10)
 
+    secure = models.IntegerField(
+        widget=widgets.RadioSelectHorizontal,
+        choices=[1, 2, 3, 4],
+        label="En resumen, ¿qué tan seguro te sientes de las respuestas que acabas de dar en la sesión anterior?"
+    )
+
+    will_consider = models.IntegerField(
+        widget=widgets.RadioSelectHorizontal,
+        choices=[
+            [1, 'Nada'],
+            [2, 'Poco'],
+            [3, 'En parte'],
+            [4, 'Mucho']
+        ],
+        label="¿En qué medida crees que los candidatos van a tener los resultados de este trabajo en consideración?"
+    )
+
+    should_consider = models.IntegerField(
+        widget=widgets.RadioSelectHorizontal,
+        choices=[
+                [1, 'Nada'],
+                [2, 'Poco'],
+                [3, 'En parte'],
+                [4, 'Mucho']
+                 ],
+        label="¿En qué medida crees que los candidatos deberían tener los resultados de este trabajo en consideración?"
+    )
+
+
 ##########
 
 
@@ -148,6 +178,7 @@ def candidates_choices(Player):
         ]
     random.shuffle(choices)
     return choices
+
 
 # PAGES
 class a04_opinion(Page):
@@ -216,8 +247,16 @@ class a12_send(Page):
 class ResultsWaitPage(WaitPage):
     pass
 
-class Results(Page):
-    pass
+class a13_questionnaire(Page):
+    form_model = 'player'
+    form_fields = ['secure', 'will_consider', 'should_consider']
+
+    @staticmethod
+    def vars_for_template(player):
+        seed = random.random()
+        return dict(
+                seed=seed,
+            )
 
 
 page_sequence = [#a05_opinion,
@@ -226,6 +265,7 @@ page_sequence = [#a05_opinion,
                  #a08_politica,
                  #a09_politica,
                  #a10_politica,
-                 a11_send,
-                a12_send,
+                 #a11_send,
+                 #a12_send,
+                 a13_questionnaire
                     ]
