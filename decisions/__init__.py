@@ -158,6 +158,184 @@ class Player(BasePlayer):
         label="¿En qué medida crees que los candidatos deberían tener los resultados de este trabajo en consideración?"
     )
 
+    spectrum = models.IntegerField(
+        widget=widgets.RadioSelect,
+        choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    )
+
+    age = models.IntegerField(
+        label="¿Cuál es su edad?"
+    )
+    sex = models.IntegerField(
+        widget=widgets.RadioSelect,
+        choices=[
+            [1, 'Femenino'],
+            [2, 'Masculino'],
+            [3, 'Prefiero no decirlo']
+                 ],
+        label='¿Cuál es su sexo?'
+    )
+    ses = models.IntegerField(
+        widget=widgets.RadioSelect,
+        choices=[1, 2, 3, 4, 5, 6],
+        label="¿De acuerdo a la factura de sus servicios, ¿en qué estrato se encuentra su vivienda?"
+    )
+
+    labor_status = models.IntegerField(
+        widget=widgets.RadioSelect,
+        choices=[
+            [1, "Activo"],
+            [2, "En búsqueda de empleo"],
+            [3, "Jubilado"],
+            [4, "Otro (no trabaja/no busca trabajo/no estudia, responsable del hogar, discapacitado no trabajador)"],
+            [5, "Estudiante"]
+        ],
+        label="¿Cuál de las siguientes situaciones describe mejor su situación laboral actual?"
+    )
+
+
+    schoolar = models.IntegerField(
+        widget=widgets.RadioSelect,
+        choices=[
+            [1, "Primaria o menos"],
+            [2, "Secundaria"],
+            [3, "Algunos años de universidad o formación profesional de grado superior"],
+            [4, "Universidad o formación profesional de grado superior"],
+            [5, "Posgrado (Master, Doctorado, otra)"]
+        ],
+        label="¿Cuál es su máximo nivel de estudios finalizados?"
+    )
+
+    marital = models.IntegerField(
+        widget=widgets.RadioSelect,
+        choices=[
+            [1, "Soltero/a"],
+            [2, "Casado/a o en unión civil"],
+            [3, "Divorciado/a o viudo/a"]
+        ],
+        label="¿Cuál es su estado civil?"
+    )
+
+    home_size = models.IntegerField(
+        label="¿Cuántas personas viven normalmente en su hogar (incluyéndose usted? "
+    )
+
+    fluid_1 = models.IntegerField(
+        label="Un bate y una pelota cuestan $1.10 en total. El bate cuesta $1.00 más que la pelota. ¿Cuánto cuesta la pelota? "
+    )
+
+    fluid_2 = models.IntegerField(
+        label="Si 5 máquinas se demoran 5 minutos para hacer 5 artículos, ¿cuánto tiempo les tomaría a 100 máquinas hacer 100 artículos?"
+    )
+
+    risk = models.IntegerField(
+        choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        label="¿Cómo se ve a usted mismo? ¿Es usted una "
+              "persona que generalmente está dispuesta a correr "
+              "riesgos o usted trata de evitar correr riesgos? "
+              "Por favor utilice una escala de 0 a 10, donde 0 "
+              "significa que usted “no está para nada dispuesto "
+              "a correr riesgos” y 10 significa que usted “está "
+              "completamente dispuesto a correr riesgos”. También"
+              " puede utilizar los valores intermedios para indicar"
+              " donde se encuentra en la escala."
+    )
+
+    intemporal = models.IntegerField(
+        choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        label="En comparación con los demás, ¿es usted "
+              "una persona que generalmente está dispuesta a "
+              "renunciar a algo hoy para beneficiarse de eso "
+              "en el futuro o no está dispuesto a hacerlo? Por"
+              " favor utilice una escala de 0 a 10, donde 0 "
+              "significa que usted es una persona que “no está "
+              "para nada dispuesta a renunciar a algo hoy” y 10 "
+              "significa que usted es una persona que “está "
+              "completamente dispuesta a renunciar a algo hoy”."
+              " También puede utilizar los valores intermedios "
+              "para indicar donde se encuentra en la escala."
+    )
+
+    positive_expectation = models.IntegerField(
+        choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        label="¿Hasta qué punto le describe como personal el"
+              " siguiente enunciado? Mientras no esté convencido"
+              " de lo contrario, asumo que las personas "
+              "solo tienen buenas intenciones. Por favor "
+              "utilice una escala de 0 a 10, donde 0 significa"
+              " “no me describe en absoluto” y 10 significa "
+              "“me describe perfectamente”. También puede "
+              "utilizar los valores intermedios para indicar"
+              " donde se encuentra en la escala."
+    )
+
+
+    altruism = models.IntegerField(
+        choices=[
+            (1, '100.000 (10%)'),
+            (2, '200.000 (20%)'),
+            (3, '300.000 (30%)'),
+            (4, '400.000 (40%)'),
+            (5, '500.000 (50%)'),
+            (6, '600.000 (60%)'),
+            (7, '700.000 (70%)'),
+            (8, '800.000 (80%)'),
+            (9, '900.000 (90%)'),
+            (10, '1.000.000 (100%)'),
+        ],
+        widget=widgets.RadioSelect,
+        label="Imagine la siguiente situación: usted ha ganado 1.000.000 de pesos en una lotería. "
+              "Considerando su situación actual, ¿cuánto estaría dispuesto a donar a buenas "
+              "causas?"
+    )
+
+    botella = models.IntegerField(
+        label='Imagine la siguiente situación: usted está de compras en una ciudad que no es familiar'
+              ' para usted y se da cuenta de que perdió el camino. Usted decide preguntarle a un extraño '
+              'por indicaciones. El extraño ofrece llevarlo en su carro al destino que usted tenía. '
+              'El viaje dura cerca de 20 minutos y le cuesta al extraño 20.000 pesos. El extraño no '
+              'desea dinero por haberlo llevado. Usted lleva seis botellas de vino con usted. '
+              'La botella más barata cuesta 5.000 pesos, la botella más cara cuesta 30.000 pesos. '
+              'Usted decide darle una de sus botellas al extraño como agradecimiento por el favor.'
+              ' ¿Cuál botella le daría?',
+        choices=[
+            (1, 'Botella de 5.000 pesos'),
+            (2, 'Botella de 10.000 pesos'),
+            (3, 'Botella de 15.000 pesos'),
+            (4, 'Botella de 20.000 pesos'),
+            (5, 'Botella de 25.000 pesos'),
+            (6, 'Botella de 30.000 pesos')],
+        widget=widgets.RadioSelect
+    )
+
+    self_perception_justicia = models.IntegerField(
+        label = '¿Cómo se ve a usted mismo? ¿Es una persona que generalmente está dispuesta a castigar comportamientos injustos, incluso, si esto es costoso para usted?'
+                'Por favor use una escala de 0 a 10, donde 0 significa que usted “no está dispuesto a incurrir en costos para castigar comportamientos injustos” y 10 significa que usted “está muy dispuesto a incurrir en costos para castigar comportamientos injustos”. '
+                'También puede usar los valores intermedios para indicar dónde se encuentra en la escala.',
+        choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        widget=widgets.RadioSelect
+        )
+
+    religion = models.IntegerField(
+        label='¿Cuál es su religión?',
+        choices=[
+            [1, 'Judaísmo'],
+            [2, 'Catolicismo'],
+            [3, 'Evangélico - Protestante'],
+            [4, 'Islamismo'],
+            [5, 'Hinduismo'],
+            [6, 'Budismo'],
+            [7, 'Mormones'],
+            [8, 'Confucianismo'],
+            [9, 'Pentecostales'],
+            [10, 'Ninguna'],
+            [11, 'Otra']
+            ],
+        widget=widgets.RadioSelect
+    )
+
+
+
 
 ##########
 
@@ -248,6 +426,17 @@ class ResultsWaitPage(WaitPage):
     pass
 
 class a13_questionnaire(Page):
+    form_model = 'player'
+    form_fields = ['secure', 'will_consider', 'should_consider']
+
+    @staticmethod
+    def vars_for_template(player):
+        seed = random.random()
+        return dict(
+                seed=seed,
+            )
+
+class a14_questionnaire(Page):
     form_model = 'player'
     form_fields = ['secure', 'will_consider', 'should_consider']
 
