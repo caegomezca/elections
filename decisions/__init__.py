@@ -48,6 +48,8 @@ class Player(BasePlayer):
     treatment = models.IntegerField()
     order_politics = models.IntegerField()
 
+    compromise = models.IntegerField()
+
     candidates = models.IntegerField(
         choices=[
             [1, 'Gustavo Petro'],
@@ -72,7 +74,7 @@ class Player(BasePlayer):
     )
 
     pe_fa = models.IntegerField(
-        choices=[[0, "Petro"], [1, "Fajardo"]],
+        choices=[[0, "Fajardo"], [1, "Petro"]],
         label="¿Fajardo o Petro?",
         widget=widgets.RadioSelectHorizontal
     )
@@ -131,9 +133,14 @@ class Player(BasePlayer):
     dictator = models.IntegerField(min=0, max=10)
 
     secure = models.IntegerField(
-        widget=widgets.RadioSelectHorizontal,
-        choices=[1, 2, 3, 4],
-        label="En resumen, ¿qué tan seguro te sientes de las respuestas que acabas de dar en la sesión anterior?"
+        widget=widgets.RadioSelect,
+        choices=[
+            [1, "Estaba muy seguro/a de mis respuestas"],
+            [2, "Estaba algo seguro/a de mis respuestas"],
+            [3, "Estaba algo inseguro/a de mis respuestas"],
+            [4, "Estaba muy inseguro/a de mis respuestas"]
+        ],
+        label="En resumen, ¿qué tan seguro se siente de las respuestas que acaba de dar en la sesión anterior?"
     )
 
     will_consider = models.IntegerField(
@@ -144,7 +151,7 @@ class Player(BasePlayer):
             [3, 'En parte'],
             [4, 'Mucho']
         ],
-        label="¿En qué medida crees que los candidatos van a tener los resultados de este trabajo en consideración?"
+        label="¿En qué medida cree que los candidatos van a tener en consideración los resultados de este estudio?"
     )
 
     should_consider = models.IntegerField(
@@ -155,7 +162,7 @@ class Player(BasePlayer):
                 [3, 'En parte'],
                 [4, 'Mucho']
                  ],
-        label="¿En qué medida crees que los candidatos deberían tener los resultados de este trabajo en consideración?"
+        label="¿En qué medida cree que los candidatos deberían tener en consideración los resultados de este estudio?"
     )
 
     spectrum = models.IntegerField(
@@ -391,6 +398,16 @@ def candidates_choices(Player):
 
 
 # PAGES
+class a01_intro(Page):
+    pass
+
+class a02_consent(Page):
+    pass
+
+class a03_note(Page):
+    form_model = 'player'
+    form_fields = ['compromise']
+
 class a04_opinion(Page):
     form_model = 'player'
     form_fields = ['candidates']
@@ -399,12 +416,19 @@ class a05_opinion(Page):
     form_model = 'player'
     form_fields = ['pe_fi', 'pe_fa', 'fa_fi']
 
+    @staticmethod
+    def vars_for_template(player):
+        seed = random.random()
+        return dict(
+            seed=seed,
+        )
+
 class a06_info(Page):
     pass
 
 class a07_politica(Page):
     form_model = 'player'
-#    form_fields = ['q1a', 'q1b']
+
     @staticmethod
     def get_form_fields(player):
         if player.order_politics == 0 or player.order_politics == 3:
@@ -445,14 +469,12 @@ class a10_politica(Page):
         else:
             return ['q3a', 'q3b']
 
-
 class a11_send(Page):
     pass
 
 class a12_send(Page):
     form_model = 'player'
     form_fields = ['dictator']
-
 
 class ResultsWaitPage(WaitPage):
     pass
@@ -483,13 +505,20 @@ class a15_questionnaire(Page):
 
 
 
-page_sequence = [#a05_opinion,
-                 #a06_info,
-                 #a07_politica,
-                 #a08_politica,
-                 #a09_politica,
-                 #a10_politica,
-                 #a11_send,
-                 #a12_send,
-                 a15_questionnaire,
+page_sequence = [
+                 a01_intro,
+                 a02_consent,
+                 a03_note,
+                 a04_opinion,
+                 a05_opinion,
+                 a06_info,
+                 a07_politica,
+                 a08_politica,
+                 a09_politica,
+                 a10_politica,
+                 a11_send,
+                 a12_send,
+                 a13_questionnaire,
+                 a14_questionnaire,
+                 a15_questionnaire
                     ]

@@ -12,15 +12,37 @@
     más cercano/a y/o quién es más probable que apoye si fuera a votar?
     </p>
 
-
-
+{{ if seed < 0.166 }}
 {{ formfield 'pe_fi' }}
-
-
 {{ formfield 'pe_fa' }}
-
-
 {{ formfield 'fa_fi' }}
+{{ elif seed > 0.166 and seed < 0.333 }}
+{{ formfield 'pe_fi' }}
+{{ formfield 'fa_fi' }}
+{{ formfield 'pe_fa' }}
+{{ elif seed > 0.333 and seed < 0.5 }}
+{{ formfield 'pe_fa' }}
+{{ formfield 'pe_fi' }}
+{{ formfield 'fa_fi' }}
+{{ elif seed > 0.5 and seed < 0.667 }}
+{{ formfield 'pe_fa' }}
+{{ formfield 'fa_fi' }}
+{{ formfield 'pe_fi' }}
+{{ elif seed > 0.667 and seed < 0.844 }}
+{{ formfield 'fa_fi' }}
+{{ formfield 'pe_fi' }}
+{{ formfield 'pe_fa' }}
+{{ elif seed > 0.844 and seed < 1 }}
+{{ formfield 'fa_fi' }}
+{{ formfield 'pe_fa' }}
+{{ formfield 'pe_fi' }}
+{{ else }}
+{{ formfield 'pe_fi' }}
+{{ formfield 'pe_fa' }}
+{{ formfield 'fa_fi' }}
+{{ endif }}
+
+
 
 
 
