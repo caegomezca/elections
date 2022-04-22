@@ -2,23 +2,24 @@
 {% load otree static %}
 
 {{ block title }}
-    [Instrucciones]
+
 {{ endblock }}
 {{ block content }}
 
 {{ if player.order_politics == 0 or player.order_politics == 3  }}
 <p>
-Propuesta (DISONANTE 1):
-    El derecho al aborto no debe existir jurídica ni socialmente pues
-    puede ser un mecanismo para estimularlo.  La política pública no
-    debe favorecer el aborto sino propiciar una sociedad de aborto cero.
+    <b>Propuesta:</b>
+    En la lucha contra la corrupción se plantea acceso a la información pública
+    y contratación con mecanismos de transparencia y rendición de cuentas.
 </p>
 <p>
 {{ if player.treatment == 2 or player.treatment == 4 or player.treatment == 6 or player.treatment == 0  }}
 
+<p><b>Esta propuesta es parte del programa o fue públicamente defendida por el candidato Gustavo Petro.</b></p>
+
 {{ elif player.treatment == 1 or player.treatment == 3 or player.treatment == 5 or player.treatment == 7 }}
 
-<p><b>Esta propuesta es parte del programa o fue públicamente defendida por el candidato Gustavo Petro.</b></p>
+<p><b>Esta propuesta es parte del programa o fue públicamente defendida por el candidato Federico Gutiérrez.</b></p>
 
 {{ endif }}
 </p>
@@ -81,15 +82,19 @@ Apoyaría esta medida si se propusiera su implementación en mi país.
 </p>
 
 {{ else }}
-Propuesta (DISONANTE 2):
-   No a la discriminación de la población LGTBI+.
-
+<b>Propuesta:</b>
+ Se busca inclusión sociolaboral y superación de las barreras laborales de la población LGTBI+
+con apoyo del Servicio Público de Empleo y otros programas.
 <p>
 {{ if player.treatment == 2 or player.treatment == 4 or player.treatment == 6 or player.treatment == 0  }}
 
+
+<p><b>Esta propuesta es parte del programa o fue públicamente defendida por el candidato Gustavo Petro.</b></p>
+
+
 {{ elif player.treatment == 1 or player.treatment == 3 or player.treatment == 5 or player.treatment == 7 }}
 
-<p><b>Esta propuesta es parte del programa o fue públicamente defendida por el candidato Fico Gutiérrez.</b></p>
+<p><b>Esta propuesta es parte del programa o fue públicamente defendida por el candidato Federico Gutiérrez.</b></p>
 
 {{ endif }}
 </p>
@@ -118,7 +123,6 @@ Apoyaría esta medida si se propusiera su implementación en mi país.
             <tr>
         </table>
     </div>
-
 <p>
     Ahora le pedimos que piense en la medida y responda sinceramente
     qué tan probable cree que quien la propuso la implementaría si fuera
@@ -133,7 +137,7 @@ Apoyaría esta medida si se propusiera su implementación en mi país.
  <div class="table-responsive text-center align-middle">
         <table class="table table-bordered" style="max-width:970px; font-size: 12px">
             <tr>
-                <td >No estoy de acuerdo en absoluto</td>
+                <td >Es absolutamente improbable</td>
                 <td><div class="radio "><label><input type="radio" name="q2b" value="1"> 1</label></div></td>
                 <td><div class="radio "><label><input type="radio" name="q2b" value="2"> 2</label></div></td>
                 <td><div class="radio "><label><input type="radio" name="q2b" value="3"> 3</label></div></td>
@@ -141,18 +145,13 @@ Apoyaría esta medida si se propusiera su implementación en mi país.
                 <td><div class="radio "><label><input type="radio" name="q2b" value="5"> 5</label></div></td>
                   <td><div class="radio "><label><input type="radio" name="q2b" value="6"> 6</label></div></td>
                 <td><div class="radio "><label><input type="radio" name="q2b" value="7"> 7</label></div></td>
-                <td >Estoy completamente de acuerdo</td>
+                <td>Es absolutamente probable</td>
             </tr>
             <tr>
         </table>
     </div>
 
-
-
-
-
 {{ endif }}
-
 
  {{ next_button }}
 

@@ -1,5 +1,6 @@
 from otree.api import *
 import random
+import datetime
 
 doc = """
 Your app description
@@ -37,14 +38,19 @@ def creating_session(subsession: Subsession):
     for p in subsession.get_players():
         p.treatment = next(treatment)
         p.order_politics = next(order)
+        p.r_rol = random.random()
         print('Treatment', p.treatment)
         print('Order', p.order_politics)
+        print('r_rol', p.r_rol)
 
 class Group(BaseGroup):
     pass
 
 class Player(BasePlayer):
+    code = models.StringField()
     r_seed = models.FloatField()
+    r_rol = models.FloatField()
+    rol = models.StringField()
     treatment = models.IntegerField()
     order_politics = models.IntegerField()
 
@@ -130,7 +136,21 @@ class Player(BasePlayer):
         choices=[1, 2, 3, 4, 5, 6, 7]
     )
 
-    dictator = models.IntegerField(min=0, max=10)
+    dictator = models.CurrencyField(
+        choices=[
+            [0, '0 pesos para el otro y 10.000 pesos para usted'],
+            [1, '1.000 pesos para el otro y 9.000 pesos para usted'],
+            [2, '2.000 pesos para el otro y 8.000 pesos para usted'],
+            [3, '3.000 pesos para el otro y 7.000 pesos para usted'],
+            [4, '4.000 pesos para el otro y 6.000 pesos para usted'],
+            [5, '5.000 pesos para el otro y 5.000 pesos para usted'],
+            [6, '6.000 pesos para el otro y 4.000 pesos para usted'],
+            [7, '7.000 pesos para el otro y 3.000 pesos para usted'],
+            [8, '8.000 pesos para el otro y 2.000 pesos para usted'],
+            [9, '9.000 pesos para el otro y 1.000 pesos para usted'],
+            [10, '10.000 pesos para el otro y 0 pesos para usted']
+        ]
+    )
 
     secure = models.IntegerField(
         widget=widgets.RadioSelect,
@@ -278,6 +298,7 @@ class Player(BasePlayer):
 
     altruism = models.IntegerField(
         choices=[
+            (0, '0 (0,0%)'),
             (1, '100.000 (10%)'),
             (2, '200.000 (20%)'),
             (3, '300.000 (30%)'),
@@ -299,18 +320,18 @@ class Player(BasePlayer):
         label='Imagine la siguiente situación: usted está de compras en una ciudad que no es familiar'
               ' para usted y se da cuenta de que perdió el camino. Usted decide preguntarle a un extraño '
               'por indicaciones. El extraño ofrece llevarlo en su carro al destino que usted tenía. '
-              'El viaje dura cerca de 20 minutos y le cuesta al extraño 20.000 pesos. El extraño no '
+              'El viaje dura cerca de 20 minutos y le cuesta al extraño 60.000 pesos. El extraño no '
               'desea dinero por haberlo llevado. Usted lleva seis botellas de vino con usted. '
-              'La botella más barata cuesta 5.000 pesos, la botella más cara cuesta 30.000 pesos. '
+              'La botella más barata cuesta 15.000 pesos, la botella más cara cuesta 90.000 pesos. '
               'Usted decide darle una de sus botellas al extraño como agradecimiento por el favor.'
               ' ¿Cuál botella le daría?',
         choices=[
-            (1, 'Botella de 5.000 pesos'),
-            (2, 'Botella de 10.000 pesos'),
-            (3, 'Botella de 15.000 pesos'),
-            (4, 'Botella de 20.000 pesos'),
-            (5, 'Botella de 25.000 pesos'),
-            (6, 'Botella de 30.000 pesos')],
+            (1, 'Botella de 15.000 pesos'),
+            (2, 'Botella de 30.000 pesos'),
+            (3, 'Botella de 45.000 pesos'),
+            (4, 'Botella de 60.000 pesos'),
+            (5, 'Botella de 75.000 pesos'),
+            (6, 'Botella de 90.000 pesos')],
         widget=widgets.RadioSelect
     )
 
@@ -378,6 +399,8 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect
     )
 
+    internal_code = models.StringField()
+
 ##########
 
 def candidates_choices(Player):
@@ -396,6 +419,9 @@ def candidates_choices(Player):
     random.shuffle(choices)
     return choices
 
+def internal_code(Player):
+    return str(Player.id_in_group) + 'D' + str(datetime.datetime.now())[5:7] + str(datetime.datetime.now())[8:10] \
+           + Player.rol[0] + str(Player.pe_fi) + str(Player.dictator)[0:2]
 
 # PAGES
 class a01_intro(Page):
@@ -470,7 +496,14 @@ class a10_politica(Page):
             return ['q3a', 'q3b']
 
 class a11_send(Page):
-    pass
+
+    @staticmethod
+    def app_after_this_page(player, upcoming_apps):
+        if player.r_rol < 0.7 or player.pe_fi == 1:
+            player.rol = 'Destinatario'
+        else:
+            player.rol = 'Remitente'
+
 
 class a12_send(Page):
     form_model = 'player'
@@ -493,32 +526,46 @@ class a13_questionnaire(Page):
 class a14_questionnaire(Page):
     form_model = 'player'
     form_fields = ['home_size',
-    'marital', 'schoolar', 'labor_status', 'ses', 'sex', 'age', 'spectrum']
+    'marital', 'schoolar', 'ses',
+                   'sex', 'age']
 
 class a15_questionnaire(Page):
     form_model = 'player'
     form_fields = [
-            'distribution', 'impuesto', 'poverty', 'frequency_religion', 'religion',
+            'impuesto', 'poverty', 'frequency_religion', 'religion',
             'self_perception_justicia', 'botella', 'altruism', 'positive_expectation',
-            'intemporal', 'risk', 'fluid_3', 'fluid_2', 'fluid_1'
+            'intemporal', 'risk'
         ]
 
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        player.internal_code = internal_code(player)
+
+class a16_final(Page):
+
+    @staticmethod
+    def vars_for_template(player):
+        code = player.internal_code
+        return dict(
+            code= code,
+        )
 
 
 page_sequence = [
-                 a01_intro,
-                 a02_consent,
-                 a03_note,
+                 #a01_intro,
+                 #a02_consent,
+                 #a03_note,
                  a04_opinion,
                  a05_opinion,
-                 a06_info,
-                 a07_politica,
-                 a08_politica,
-                 a09_politica,
-                 a10_politica,
+                 #a06_info,
+                 #a07_politica,
+                 #a08_politica,
+                 #a09_politica,
+                 #a10_politica,
                  a11_send,
                  a12_send,
-                 a13_questionnaire,
-                 a14_questionnaire,
-                 a15_questionnaire
+                 #a13_questionnaire,
+                 #a14_questionnaire,
+                 a15_questionnaire,
+                 a16_final
                     ]

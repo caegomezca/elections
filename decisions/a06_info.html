@@ -3,14 +3,17 @@
 
 
 {{ block title }}
-[Instrucciones]
+Ahore le vemos a mostrar comunicaciones en redes
+sociales relativas a las próximos elecciones
+presidenciales colombianas.
 {{ endblock }}
 {{ block content }}
 
 <!-- It's a javascript file which will perform
 all actions which we need to show tweets-->
 
-
+<p>Por favor lea con detenimiento la siguiente información.
+    Pasados 35 segundos aparecerá el botón siguiente para avanzar en la encuesta.</p>
 
 {{ if player.treatment == 0 or player.treatment == 1 }}
     <blockquote class="twitter-tweet"><p lang="es" dir="ltr">
@@ -29,14 +32,26 @@ all actions which we need to show tweets-->
 "https://platform.twitter.com/widgets.js" charset="utf-8">
 </script>
 
+<style>
+   .otree-btn-next {
+        display:none
+       }
+</style>
+
+<script>
+setTimeout(function() {
+    $('.otree-btn-next').show()
+    }, 35000);
+</script>
+
+
 {{ elif player.treatment == 2 or player.treatment == 3 }}
 {{ if player.pe_fi == 1 }}
-<blockquote class="twitter-tweet"><p lang="es" dir="ltr">Que me ataquen Petro, Cepeda, Farc, ELN, Roy, Benedetti, Ospina y varios del mismo combo, lo que indica es que vamos muy bien y vamos a ganar. <br>Ellos ya lo saben. <br>En Colombia sí cambiaran muchas cosas, pero a favor de la gente, y no de ellos, ni de los criminal que hoy defienden</p>&mdash; Fico Gutiérrez (@FicoGutierrez) <a href="https://twitter.com/FicoGutierrez/status/1514636341329465350?ref_src=twsrc%5Etfw">April 14, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<script async src=
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">Dr Petro le duele que trabajo en el agro y nada tengo en el<br>extranjero ni escondido. <br><br>Entendible en un vago, enredador, fantoche de mansiones y atuendos, que no ha producido más que crímenes, incitación a la violencia, y contratos corruptos pagados con bolsas de billetes</p>&mdash; Álvaro Uribe Vélez (@AlvaroUribeVel) <a href="https://twitter.com/AlvaroUribeVel/status/1471419656481165317?ref_src=twsrc%5Etfw">December 16, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><script async src=
 "https://platform.twitter.com/widgets.js" charset="utf-8">
 </script>
 {{ else }}
-<blockquote class="twitter-tweet"><p lang="es" dir="ltr">No me avergüenza estar endeudado. El 95% de los colombianos lo está.<br>Me avergonzaría asesinar 6.402 inocentes, robar 70 mil millones, dar carne de caballo a los niños, recibir plata de narcos en campaña, robar tierras, declarar renta en $0, golpear o violar mujeres; venderme!</p>&mdash; Gustavo Bolívar (@GustavoBolivar) <a href="https://twitter.com/GustavoBolivar/status/1430912628810002433?ref_src=twsrc%5Etfw">August 26, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">Neo nazis en RCN. <a href="https://t.co/tYZzHF0Yaw">https://t.co/tYZzHF0Yaw</a></p>&mdash; Gustavo Petro (@petrogustavo) <a href="https://twitter.com/petrogustavo/status/1508421880444858372?ref_src=twsrc%5Etfw">March 28, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script async src=
 "https://platform.twitter.com/widgets.js" charset="utf-8">
 </script>
@@ -45,13 +60,12 @@ all actions which we need to show tweets-->
 
 {{ elif player.treatment == 4 or player.treatment == 5  }}
 {{ if player.pe_fi == 1 }}
-    <blockquote class="twitter-tweet"><p lang="es" dir="ltr">No me avergüenza estar endeudado. El 95% de los colombianos lo está.<br>Me avergonzaría asesinar 6.402 inocentes, robar 70 mil millones, dar carne de caballo a los niños, recibir plata de narcos en campaña, robar tierras, declarar renta en $0, golpear o violar mujeres; venderme!</p>&mdash; Gustavo Bolívar (@GustavoBolivar) <a href="https://twitter.com/GustavoBolivar/status/1430912628810002433?ref_src=twsrc%5Etfw">August 26, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">Neo nazis en RCN. <a href="https://t.co/tYZzHF0Yaw">https://t.co/tYZzHF0Yaw</a></p>&mdash; Gustavo Petro (@petrogustavo) <a href="https://twitter.com/petrogustavo/status/1508421880444858372?ref_src=twsrc%5Etfw">March 28, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script async src=
 "https://platform.twitter.com/widgets.js" charset="utf-8">
 </script>
 {{ else}}
-
-<blockquote class="twitter-tweet"><p lang="es" dir="ltr">Que me ataquen Petro, Cepeda, Farc, ELN, Roy, Benedetti, Ospina y varios del mismo combo, lo que indica es que vamos muy bien y vamos a ganar. <br>Ellos ya lo saben. <br>En Colombia sí cambiaran muchas cosas, pero a favor de la gente, y no de ellos, ni de los criminal que hoy defienden</p>&mdash; Fico Gutiérrez (@FicoGutierrez) <a href="https://twitter.com/FicoGutierrez/status/1514636341329465350?ref_src=twsrc%5Etfw">April 14, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">Dr Petro le duele que trabajo en el agro y nada tengo en el<br>extranjero ni escondido. <br><br>Entendible en un vago, enredador, fantoche de mansiones y atuendos, que no ha producido más que crímenes, incitación a la violencia, y contratos corruptos pagados con bolsas de billetes</p>&mdash; Álvaro Uribe Vélez (@AlvaroUribeVel) <a href="https://twitter.com/AlvaroUribeVel/status/1471419656481165317?ref_src=twsrc%5Etfw">December 16, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script async src=
 "https://platform.twitter.com/widgets.js" charset="utf-8">
 </script>
@@ -72,14 +86,14 @@ all actions which we need to show tweets-->
   <div id="contenedor">
   <div>
     <p>
-          <blockquote class="twitter-tweet"><p lang="es" dir="ltr">Que me ataquen Petro, Cepeda, Farc, ELN, Roy, Benedetti, Ospina y varios del mismo combo, lo que indica es que vamos muy bien y vamos a ganar. <br>Ellos ya lo saben. <br>En Colombia sí cambiaran muchas cosas, pero a favor de la gente, y no de ellos, ni de los criminal que hoy defienden</p>&mdash; Fico Gutiérrez (@FicoGutierrez) <a href="https://twitter.com/FicoGutierrez/status/1514636341329465350?ref_src=twsrc%5Etfw">April 14, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">Dr Petro le duele que trabajo en el agro y nada tengo en el<br>extranjero ni escondido. <br><br>Entendible en un vago, enredador, fantoche de mansiones y atuendos, que no ha producido más que crímenes, incitación a la violencia, y contratos corruptos pagados con bolsas de billetes</p>&mdash; Álvaro Uribe Vélez (@AlvaroUribeVel) <a href="https://twitter.com/AlvaroUribeVel/status/1471419656481165317?ref_src=twsrc%5Etfw">December 16, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script async src=
 "https://platform.twitter.com/widgets.js" charset="utf-8">
 </script>
     </p>
   </div>
   <div>
-    <p> <blockquote class="twitter-tweet"><p lang="es" dir="ltr">No me avergüenza estar endeudado. El 95% de los colombianos lo está.<br>Me avergonzaría asesinar 6.402 inocentes, robar 70 mil millones, dar carne de caballo a los niños, recibir plata de narcos en campaña, robar tierras, declarar renta en $0, golpear o violar mujeres; venderme!</p>&mdash; Gustavo Bolívar (@GustavoBolivar) <a href="https://twitter.com/GustavoBolivar/status/1430912628810002433?ref_src=twsrc%5Etfw">August 26, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <p> <blockquote class="twitter-tweet"><p lang="es" dir="ltr">Neo nazis en RCN. <a href="https://t.co/tYZzHF0Yaw">https://t.co/tYZzHF0Yaw</a></p>&mdash; Gustavo Petro (@petrogustavo) <a href="https://twitter.com/petrogustavo/status/1508421880444858372?ref_src=twsrc%5Etfw">March 28, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script async src=
 "https://platform.twitter.com/widgets.js" charset="utf-8">
 </script></p>
